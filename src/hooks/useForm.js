@@ -20,7 +20,10 @@ export const useForm = (initialForm, validateForm) => {
 
   const handleBlur = (e)=>{
     handleChange(e)
-    setErrors(validateForm(form))
+    const {name, value} = e.target;
+    // Transformar el objeto Form en Array(Object.keys) y Obtener la posicion del input actual (index)
+    const currentIndex = Object.keys(form).indexOf(name) 
+    setErrors(validateForm(form, currentIndex));
   }
 
   const handleSubmit = (e)=>{
